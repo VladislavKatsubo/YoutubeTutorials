@@ -35,6 +35,7 @@ class MainScreenVC: UIViewController {
         contentView.configureCollectionView()
         
         unsplashPhotoManager.delegate = self
+        print("I'm loading it again")
         unsplashPhotoManager.fetchPhotos()
     }
     
@@ -81,15 +82,24 @@ extension MainScreenVC: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard var query = searchBar.text else { return }
+        unsplashPhotoManager.fetchPhotos(with: &query)
         search(false)
         searchBar.text = ""
-        // Here i will performRequest to Unsplash API and get collection of photos that will lay on the screen
     }
 }
 
 //MARK: - UICollectionViewDelegate methods
 extension MainScreenVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imageCell = contentView.collectionView.cellForItem(at: indexPath) as! PhotoCollectionViewCell
+        let dc = DetailedVC()
+        
+        dc.modalTransitionStyle = .flipHorizontal
+        dc.modalPresentationStyle = .popover
+        dc.photoToShow = imageCell.imageView.image
+        present(dc, animated: true)
+    }
 }
 
 //MARK: - UICollectionViewDataSoruce methods
@@ -130,6 +140,7 @@ extension MainScreenVC: UnsplashDataDelegate {
     func updateUI(with photoModels: [PhotoModel]) {
         
         DispatchQueue.main.async {
+            self.photoData.removeAll()
             self.photoData = photoModels
             self.contentView.collectionView.reloadData()
         }

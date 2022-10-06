@@ -19,6 +19,8 @@
 		0D0D755428E95AB900A223B7 /* MainScreenLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D755328E95AB900A223B7 /* MainScreenLayout.swift */; };
 		0D0D755728E96ACC00A223B7 /* FavouriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0D755628E96ACC00A223B7 /* FavouriteVC.swift */; };
 		0D5C1C4C28EB28F800BBE4A7 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C1C4B28EB28F800BBE4A7 /* PhotoCollectionViewCell.swift */; };
+		0D5C1C5028EE8AE700BBE4A7 /* DetailedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C1C4F28EE8AE700BBE4A7 /* DetailedVC.swift */; };
+		0D5C1C5228EE8CD600BBE4A7 /* DetailedVCLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C1C5128EE8CD600BBE4A7 /* DetailedVCLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		0D0D755328E95AB900A223B7 /* MainScreenLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenLayout.swift; sourceTree = "<group>"; };
 		0D0D755628E96ACC00A223B7 /* FavouriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteVC.swift; sourceTree = "<group>"; };
 		0D5C1C4B28EB28F800BBE4A7 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		0D5C1C4F28EE8AE700BBE4A7 /* DetailedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVC.swift; sourceTree = "<group>"; };
+		0D5C1C5128EE8CD600BBE4A7 /* DetailedVCLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVCLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				0D0D755328E95AB900A223B7 /* MainScreenLayout.swift */,
+				0D5C1C5128EE8CD600BBE4A7 /* DetailedVCLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 			children = (
 				0D0D753928E6181D00A223B7 /* MainScreenVC.swift */,
 				0D0D755628E96ACC00A223B7 /* FavouriteVC.swift */,
+				0D5C1C4F28EE8AE700BBE4A7 /* DetailedVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -187,6 +193,8 @@
 				0D0D754D28E7770F00A223B7 /* UnsplashPhotoManager.swift in Sources */,
 				0D0D755128E89E7000A223B7 /* PhotoModel.swift in Sources */,
 				0D0D753828E6181D00A223B7 /* SceneDelegate.swift in Sources */,
+				0D5C1C5228EE8CD600BBE4A7 /* DetailedVCLayout.swift in Sources */,
+				0D5C1C5028EE8AE700BBE4A7 /* DetailedVC.swift in Sources */,
 				0D0D754F28E77C4400A223B7 /* Constants.swift in Sources */,
 				0D0D755728E96ACC00A223B7 /* FavouriteVC.swift in Sources */,
 			);

@@ -16,7 +16,6 @@ class MainScreenLayout: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
         configureCollectionView()
     }
     
@@ -38,6 +37,7 @@ class MainScreenLayout: UIView {
     //MARK: - CollectionView configuration
     func configureCollectionView() {
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
+        collectionView.backgroundColor = .black
 //        collectionView.frame = super.bounds
         addSubview(collectionView)
     }
