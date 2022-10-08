@@ -23,14 +23,20 @@ class DetailedVCLayout: UIView {
     
     func configureScreen() {
         addSubview(photoView)
+        photoView.translatesAutoresizingMaskIntoConstraints = false
         photoView.contentMode = .scaleAspectFill
 
+        NSLayoutConstraint.activate([
+            photoView.topAnchor.constraint(equalTo: topAnchor),
+            photoView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            photoView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            photoView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)
+        ])
         
-        photoView.translatesAutoresizingMaskIntoConstraints = false
-        photoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        photoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        photoView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        photoView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-        photoView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//        photoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+//        photoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+//        photoView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+//        photoView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+//        photoView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
