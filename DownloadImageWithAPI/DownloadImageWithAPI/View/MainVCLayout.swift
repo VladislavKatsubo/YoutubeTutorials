@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainScreenLayout: UIView {
+class MainVCLayout: UIView {
     
     let searchBar = UISearchBar()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -38,7 +38,6 @@ class MainScreenLayout: UIView {
     func configureCollectionView() {
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.backgroundColor = .black
-//        collectionView.frame = super.bounds
         addSubview(collectionView)
     }
     

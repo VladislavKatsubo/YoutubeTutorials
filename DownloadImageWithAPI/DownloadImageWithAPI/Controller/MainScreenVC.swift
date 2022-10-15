@@ -9,7 +9,7 @@ import UIKit
 
 class MainScreenVC: UIViewController {
     
-    lazy var contentView: MainScreenLayout = .init()
+    lazy var contentView: MainVCLayout = .init()
     var unsplashPhotoManager = UnsplashPhotoManager()
     var photoData = [PhotoModel]()
     
@@ -35,13 +35,12 @@ class MainScreenVC: UIViewController {
         contentView.configureCollectionView()
         
         unsplashPhotoManager.delegate = self
-        print("I'm loading it again")
         unsplashPhotoManager.fetchPhotos()
     }
-    
+
     func configureNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
     }
@@ -92,13 +91,14 @@ extension MainScreenVC: UISearchBarDelegate {
 //MARK: - UICollectionViewDelegate methods
 extension MainScreenVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let imageCell = contentView.collectionView.cellForItem(at: indexPath) as! PhotoCollectionViewCell
         let dc = DetailedVC()
-        
-        dc.modalTransitionStyle = .flipHorizontal
-        dc.modalPresentationStyle = .popover
-        dc.photoToShow = imageCell.imageView.image
-        present(dc, animated: true)
+        let photo = photoData[indexPath.row]
+        dc.photoObject = photo
+        dc.layout.photoView.loadImageFromURL(photo.regularPhoto)
+        navigationController?.pushViewController(dc, animated: true)
+        //        dc.modalTransitionStyle = .flipHorizontal
+        //        dc.modalPresentationStyle = .formSheet
+        //        present(dc, animated: true)
     }
 }
 
@@ -110,16 +110,13 @@ extension MainScreenVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let imageCell = contentView.collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        let photoURL = photoData[indexPath.row].regularPhoto
+        let photoURL = photoData[indexPath.row].smallPhoto
         DispatchQueue.main.async {
             imageCell.imageView.loadImageFromURL(photoURL)
         }
         return imageCell
     }
-    
-    
 }
-
 //MARK: - UICollectionViewFlowLayoutDelegate methods
 extension MainScreenVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -132,13 +129,10 @@ extension MainScreenVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-    
 }
-
 //MARK: - UnsplashManagerDelegate methods
 extension MainScreenVC: UnsplashDataDelegate {
     func updateUI(with photoModels: [PhotoModel]) {
-        
         DispatchQueue.main.async {
             self.photoData.removeAll()
             self.photoData = photoModels

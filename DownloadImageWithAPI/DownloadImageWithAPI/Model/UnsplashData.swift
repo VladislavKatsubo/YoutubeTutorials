@@ -13,16 +13,23 @@ struct UnsplashData: Codable, Identifiable {
     var likes: Int
     var created_at: String
     var user: User
+    var location: Location
+    var downloads: Int
 }
 
 struct URLs: Codable {
     var regular: String
     var thumb: String
+    var small: String
 }
 
 struct User: Codable {
     var name: String
-    var location: String?
+}
+struct Location: Codable {
+    var name: String?
+    var city: String?
+    var country: String?
 }
 
 //MARK: - Structs to parse json for search query (it's slightly different).
@@ -37,5 +44,7 @@ struct Results: Codable {
     var urls: URLs
     var user: User
     var likes: Int
+    var downloads: Int
 }
+
 

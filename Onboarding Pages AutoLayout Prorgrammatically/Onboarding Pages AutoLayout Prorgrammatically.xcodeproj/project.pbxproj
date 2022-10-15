@@ -13,6 +13,11 @@
 		0D3F886B28EFD8C200B1AAAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D3F886928EFD8C200B1AAAA /* Main.storyboard */; };
 		0D3F886D28EFD8C300B1AAAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D3F886C28EFD8C300B1AAAA /* Assets.xcassets */; };
 		0D3F887028EFD8C300B1AAAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D3F886E28EFD8C300B1AAAA /* LaunchScreen.storyboard */; };
+		0D41F42328F17B8E000E354A /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41F42228F17B8E000E354A /* PageCell.swift */; };
+		0D41F42A28F182E3000E354A /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41F42928F182E3000E354A /* Page.swift */; };
+		0D41F42E28F1E235000E354A /* SwipingController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41F42D28F1E235000E354A /* SwipingController+extension.swift */; };
+		0D41F43028F1E2F5000E354A /* SwipingController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41F42F28F1E2F5000E354A /* SwipingController+UICollectionView.swift */; };
+		0D56C35928F174E500648941 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D56C35828F174E500648941 /* SwipingController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		0D3F886C28EFD8C300B1AAAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D3F886F28EFD8C300B1AAAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D3F887128EFD8C300B1AAAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D41F42228F17B8E000E354A /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		0D41F42928F182E3000E354A /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		0D41F42D28F1E235000E354A /* SwipingController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipingController+extension.swift"; sourceTree = "<group>"; };
+		0D41F42F28F1E2F5000E354A /* SwipingController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipingController+UICollectionView.swift"; sourceTree = "<group>"; };
+		0D56C35828F174E500648941 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +67,43 @@
 			isa = PBXGroup;
 			children = (
 				0D3F886328EFD8C200B1AAAA /* AppDelegate.swift */,
+				0D41F42828F182D4000E354A /* Model */,
+				0D41F42B28F18327000E354A /* View */,
+				0D41F42C28F18336000E354A /* Controller */,
 				0D3F886528EFD8C200B1AAAA /* SceneDelegate.swift */,
-				0D3F886728EFD8C200B1AAAA /* ViewController.swift */,
 				0D3F886928EFD8C200B1AAAA /* Main.storyboard */,
 				0D3F886C28EFD8C300B1AAAA /* Assets.xcassets */,
 				0D3F886E28EFD8C300B1AAAA /* LaunchScreen.storyboard */,
 				0D3F887128EFD8C300B1AAAA /* Info.plist */,
 			);
 			path = "Onboarding Pages AutoLayout Prorgrammatically";
+			sourceTree = "<group>";
+		};
+		0D41F42828F182D4000E354A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0D41F42928F182E3000E354A /* Page.swift */,
+				0D41F42228F17B8E000E354A /* PageCell.swift */,
+				0D41F42D28F1E235000E354A /* SwipingController+extension.swift */,
+				0D41F42F28F1E2F5000E354A /* SwipingController+UICollectionView.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0D41F42B28F18327000E354A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0D41F42C28F18336000E354A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0D56C35828F174E500648941 /* SwipingController.swift */,
+				0D3F886728EFD8C200B1AAAA /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +177,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D41F43028F1E2F5000E354A /* SwipingController+UICollectionView.swift in Sources */,
+				0D41F42E28F1E235000E354A /* SwipingController+extension.swift in Sources */,
 				0D3F886828EFD8C200B1AAAA /* ViewController.swift in Sources */,
+				0D41F42328F17B8E000E354A /* PageCell.swift in Sources */,
+				0D41F42A28F182E3000E354A /* Page.swift in Sources */,
 				0D3F886428EFD8C200B1AAAA /* AppDelegate.swift in Sources */,
 				0D3F886628EFD8C200B1AAAA /* SceneDelegate.swift in Sources */,
+				0D56C35928F174E500648941 /* SwipingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

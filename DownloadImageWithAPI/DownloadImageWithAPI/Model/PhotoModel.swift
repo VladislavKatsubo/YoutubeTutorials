@@ -12,5 +12,7 @@ struct PhotoModel {
     let likesAmount: Int
     let dateCreated: String
     let regularPhoto: String
-    let location: String?
+    let smallPhoto: String
+    let location: (String?, String?)
+    let downloads: Int
 }

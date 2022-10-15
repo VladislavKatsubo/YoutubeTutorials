@@ -38,3 +38,4 @@ fastlane/sign&cert
 *.save
 ._*
 *.bak
+7task.playground

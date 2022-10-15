@@ -39,7 +39,6 @@ struct UnsplashPhotoManager {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if error != nil {
-                    //                    delegate?.didFailWithError(error: error!)
                     print(error?.localizedDescription ?? error!)
                     return
                 }
@@ -50,7 +49,6 @@ struct UnsplashPhotoManager {
                     }
                 }
             }
-            
             task.resume()
         }
     }
@@ -67,8 +65,10 @@ struct UnsplashPhotoManager {
                     let likesAmount = photoObject.likes
                     let dateCreated = photoObject.created_at
                     let regularPhoto = photoObject.urls.regular
-                    let location = photoObject.user.location
-                    let photoModel = PhotoModel(authorName: authorName, likesAmount: likesAmount, dateCreated: dateCreated, regularPhoto: regularPhoto, location: location)
+                    let smallPhoto = photoObject.urls.small
+                    let downloads = photoObject.downloads
+                    //                    let location =
+                    let photoModel = PhotoModel(authorName: authorName, likesAmount: likesAmount, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: ("", ""), downloads: downloads)
                     photoObjectsArray.append(photoModel)
                     print("Here is your data", photoModel)
                 }
@@ -81,9 +81,13 @@ struct UnsplashPhotoManager {
                     let likesAmount = photoObject.likes
                     let dateCreated = photoObject.created_at
                     let regularPhoto = photoObject.urls.regular
-                    let location = photoObject.user.location
-                    let photoModel = PhotoModel(authorName: authorName, likesAmount: likesAmount, dateCreated: dateCreated, regularPhoto: regularPhoto, location: location)
+                    let smallPhoto = photoObject.urls.small
+                    let locationCity = photoObject.location.city
+                    let locationCountry = photoObject.location.country
+                    let downloads = photoObject.downloads
+                    let photoModel = PhotoModel(authorName: authorName, likesAmount: likesAmount, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (locationCity, locationCountry), downloads: downloads)
                     photoObjectsArray.append(photoModel)
+                    //                locationCity: locationCity, locationCountry: locationCountry,
                 }
                 return photoObjectsArray
             }
@@ -97,25 +101,29 @@ struct UnsplashPhotoManager {
 }
 
 
-//MARK: - Extension for UIImageView to load image from URL and cache it
+//MARK: - Class for UIImageView to load image from URL and cache it
 let imageCache = NSCache<AnyObject, AnyObject>()
-let activityView = UIActivityIndicatorView(style: .medium)
+
 class CustomImageView: UIImageView {
-    
+    let activityView = UIActivityIndicatorView(style: .large)
     var imageUrlString: String?
     
     func loadImageFromURL(_ urlString: String) {
+        
+        
         imageUrlString = urlString
         guard let url = URL(string: urlString) else { return }
         
         image = nil
-        
-        activityView.center = self.center
-        self.addSubview(activityView)
+        activityView.frame = frame
+        activityView.center = center
+        addSubview(activityView)
         activityView.startAnimating()
         
+        
+        
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
-            self.image = imageFromCache
+            image = imageFromCache
             activityView.stopAnimating()
             activityView.removeFromSuperview()
             return
@@ -123,8 +131,8 @@ class CustomImageView: UIImageView {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
-                activityView.stopAnimating()
-                activityView.removeFromSuperview()
+                self.activityView.stopAnimating()
+                self.activityView.removeFromSuperview()
             }
             
             if let data = data {
