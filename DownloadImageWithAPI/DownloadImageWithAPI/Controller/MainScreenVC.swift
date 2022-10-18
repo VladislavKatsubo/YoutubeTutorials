@@ -37,10 +37,9 @@ class MainScreenVC: UIViewController {
         unsplashPhotoManager.delegate = self
         unsplashPhotoManager.fetchPhotos()
     }
-
+    
     func configureNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
     }
@@ -92,13 +91,13 @@ extension MainScreenVC: UISearchBarDelegate {
 extension MainScreenVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dc = DetailedVC()
-        let photo = photoData[indexPath.row]
-        dc.photoObject = photo
-        dc.layout.photoView.loadImageFromURL(photo.regularPhoto)
+        dc.photoObject = photoData[indexPath.row]
+        if photoData[indexPath.row].downloads == nil {
+            dc.fromSearchCollection = true
+        }
+        dc.layout.photoView.loadImageFromURL(photoData[indexPath.row].regularPhoto)
+        dc.navigationController?.navigationBar.isTranslucent = false
         navigationController?.pushViewController(dc, animated: true)
-        //        dc.modalTransitionStyle = .flipHorizontal
-        //        dc.modalPresentationStyle = .formSheet
-        //        present(dc, animated: true)
     }
 }
 
@@ -133,10 +132,10 @@ extension MainScreenVC: UICollectionViewDelegateFlowLayout {
 //MARK: - UnsplashManagerDelegate methods
 extension MainScreenVC: UnsplashDataDelegate {
     func updateUI(with photoModels: [PhotoModel]) {
-        DispatchQueue.main.async {
-            self.photoData.removeAll()
-            self.photoData = photoModels
-            self.contentView.collectionView.reloadData()
-        }
+            DispatchQueue.main.async {
+                self.photoData.removeAll()
+                self.photoData = photoModels
+                self.contentView.collectionView.reloadData()
+            }
     }
 }

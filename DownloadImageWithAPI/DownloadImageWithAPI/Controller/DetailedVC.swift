@@ -11,8 +11,9 @@ class DetailedVC: UIViewController {
     
     
     lazy var layout: DetailedVCLayout = .init()
-    
+    var unsplashPhotoManager = UnsplashPhotoManager()
     var photoObject: PhotoModel? = nil
+    var fromSearchCollection = false
     
     override func loadView() {
         super.loadView()
@@ -21,10 +22,9 @@ class DetailedVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layoutAllElements()
+        unsplashPhotoManager.delegate = self
+        fetchDownloadsLocationInfo(fromSearchCollection)
         configureNavBar()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(showInfo))
-        navigationItem.rightBarButtonItem?.tintColor = .white
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -36,51 +36,47 @@ class DetailedVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func hello() {
-        print("hello")
-    }
-    
-    func layoutAllElements() {
-        if let photo = photoObject {
-//            layout.photoView.loadImageFromURL(photo.regularPhoto)
-            layout.dateCreated.attributedText = addSymbolPrefix(with: Symbols.calendar.rawValue, for: photo.dateCreated.formatToDate!)
-            layout.authorName.attributedText = addSymbolPrefix(with: Symbols.person.rawValue, for: photo.authorName)
-            layout.downloadsAmount.attributedText = addSymbolPrefix(with: Symbols.downloadArrow.rawValue, for: String(photo.downloads))
-            
-            switch photo.location {
-            case (let city?, let country?):
-                layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "\(String(describing: city)), \(String(describing: country))")
-            default:
-                layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "Earth")
-            }
-            
-            
-        }
-    }
-    
     
     func configureNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
+        navigationItem.title = photoObject?.authorName
+        let info = UIBarButtonItem(image: UIImage(systemName: Symbols.info.rawValue), style: .plain, target: self, action: #selector(showInfo))
+        let favorite = UIBarButtonItem(image: UIImage(systemName: Symbols.favorite.rawValue), style: .plain, target: self, action: #selector(addToFavorite))
+        navigationItem.rightBarButtonItems = [favorite, info]
     }
     
+//show infoVC at the bottom of the page
     @objc func showInfo() {
         let infoVC = InfoVC()
         infoVC.modalPresentationStyle = .custom
         infoVC.transitioningDelegate = self
+        infoVC.photoObject = photoObject
         present(infoVC, animated: true)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        navigationController?.hidesBarsOnTap = true
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        navigationController?.hidesBarsOnTap = false
-//    }
+    @objc func addToFavorite() {
+        
+    }
+    
+    func fetchDownloadsLocationInfo(_ proceed: Bool) {
+        if proceed {
+            if let photoObject = photoObject {
+                if photoObject.downloads == nil {
+                    unsplashPhotoManager.getInfoForID(with: photoObject.id)
+                }
+            }
+        }
+    }
+
+//MARK: - Hide NavigationBar on Tap to make image fullscreen
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnTap = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.hidesBarsOnTap = false
+    }
     
     
 }
@@ -93,3 +89,35 @@ extension DetailedVC: UIViewControllerTransitioningDelegate {
         PresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
+
+extension DetailedVC: UnsplashDataDelegate {
+    func updateUI(with photoModels: [PhotoModel]) {
+        self.photoObject?.location = photoModels[0].location
+        self.photoObject?.downloads = photoModels[0].downloads
+    }
+}
+
+
+
+
+
+
+
+
+//    func layoutAllElements() {
+//        if let photo = photoObject {
+////            layout.photoView.loadImageFromURL(photo.regularPhoto)
+//            layout.dateCreated.attributedText = addSymbolPrefix(with: Symbols.calendar.rawValue, for: photo.dateCreated.formatToDate!)
+//            layout.authorName.attributedText = addSymbolPrefix(with: Symbols.person.rawValue, for: photo.authorName)
+//            layout.downloadsAmount.attributedText = addSymbolPrefix(with: Symbols.downloadArrow.rawValue, for: String(photo.downloads))
+//
+//            switch photo.location {
+//            case (let city?, let country?):
+//                layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "\(String(describing: city)), \(String(describing: country))")
+//            default:
+//                layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "Earth")
+//            }
+//
+//
+//        }
+//    }

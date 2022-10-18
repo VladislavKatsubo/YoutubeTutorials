@@ -13,4 +13,5 @@ enum Symbols: String {
     case person = "person.crop.circle"
     case location = "location.circle"
     case favorite = "star.circle"
+    case info = "info.circle"
 }

@@ -27,6 +27,7 @@
 		0D5C1C4C28EB28F800BBE4A7 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C1C4B28EB28F800BBE4A7 /* PhotoCollectionViewCell.swift */; };
 		0D5C1C5028EE8AE700BBE4A7 /* DetailedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C1C4F28EE8AE700BBE4A7 /* DetailedVC.swift */; };
 		0D5C1C5228EE8CD600BBE4A7 /* DetailedVCLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5C1C5128EE8CD600BBE4A7 /* DetailedVCLayout.swift */; };
+		0D6557C428FAFD7E003D788A /* InfoVCLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6557C328FAFD7E003D788A /* InfoVCLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		0D5C1C4B28EB28F800BBE4A7 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D5C1C4F28EE8AE700BBE4A7 /* DetailedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVC.swift; sourceTree = "<group>"; };
 		0D5C1C5128EE8CD600BBE4A7 /* DetailedVCLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedVCLayout.swift; sourceTree = "<group>"; };
+		0D6557C328FAFD7E003D788A /* InfoVCLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVCLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				0D0D755328E95AB900A223B7 /* MainVCLayout.swift */,
 				0D5C1C5128EE8CD600BBE4A7 /* DetailedVCLayout.swift */,
+				0D6557C328FAFD7E003D788A /* InfoVCLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				0D0D754D28E7770F00A223B7 /* UnsplashPhotoManager.swift in Sources */,
 				0D2C5ECF28FAEE9E00BF0DD7 /* PresentationController.swift in Sources */,
 				0D2C5ED128FAF2E000BF0DD7 /* InfoVC.swift in Sources */,
+				0D6557C428FAFD7E003D788A /* InfoVCLayout.swift in Sources */,
 				0D0D755128E89E7000A223B7 /* PhotoModel.swift in Sources */,
 				0D41F43328F51744000E354A /* ISOStringToDate+extension.swift in Sources */,
 				0D0D753828E6181D00A223B7 /* SceneDelegate.swift in Sources */,

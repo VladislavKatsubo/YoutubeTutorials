@@ -11,12 +11,19 @@ class InfoVC: UIViewController {
 
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
+    lazy var layout: InfoVCLayout = .init()
+    var photoObject: PhotoModel? = nil
+    
+    override func loadView() {
+        super.loadView()
+        view = layout
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
-     
+        layoutAllElements()
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,6 +51,24 @@ class InfoVC: UIViewController {
                     self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
                 }
             }
+        }
+    }
+    
+    func layoutAllElements() {
+        if let photo = photoObject {
+            layout.dateCreated.attributedText = addSymbolPrefix(with: Symbols.calendar.rawValue, for: photo.dateCreated.formatToDate!)
+            
+            if let downloads = photo.downloads {
+                layout.downloadsAmount.attributedText = addSymbolPrefix(with: Symbols.downloadArrow.rawValue, for: String(downloads))
+            }
+            
+            switch photo.location {
+            case (let city?, let country?):
+                layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "\(String(describing: city)), \(String(describing: country))")
+            default:
+                layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "Earth")
+            }
+            
         }
     }
 

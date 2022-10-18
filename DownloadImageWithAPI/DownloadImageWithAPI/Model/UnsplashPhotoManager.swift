@@ -11,6 +11,11 @@ import UIKit
 protocol UnsplashDataDelegate {
     func updateUI(with photoModels: [PhotoModel])
 }
+//extension UnsplashDataDelegate {
+//    func updateUI(with photoModels: [PhotoModel], forID: Bool = false) {
+//        updateUI(with: photoModels, forID: forID)
+//    }
+//}
 
 struct UnsplashPhotoManager {
     
@@ -29,12 +34,16 @@ struct UnsplashPhotoManager {
     func fetchPhotos(with query: inout String) {
         query = query.replacingOccurrences(of: " ", with: "%20")
         let urlString = "\(photoSearchURL)\(photoAPIKey)&query=\(query)"
-        
-        print(urlString)
         performRequest(with: urlString, ifSearch: true)
     }
     
-    func performRequest(with urlString: String, ifSearch: Bool) {
+    func getInfoForID(with id: String) {
+        let urlString = "\(photoURL)/\(id)\(photoAPIKey)"
+        performRequest(with: urlString, ifSearch: false, forID: true)
+        return
+    }
+    
+    func performRequest(with urlString: String, ifSearch: Bool, forID: Bool = false) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -42,9 +51,8 @@ struct UnsplashPhotoManager {
                     print(error?.localizedDescription ?? error!)
                     return
                 }
-                
                 if let safeData = data {
-                    if let photoData = self.parseJSON(safeData, ifSearch: ifSearch) {
+                    if let photoData = self.parseJSON(safeData, ifSearch: ifSearch, getInfo: forID) {
                         self.delegate?.updateUI(with: photoData)
                     }
                 }
@@ -53,51 +61,59 @@ struct UnsplashPhotoManager {
         }
     }
     
-    func parseJSON(_ unsplashData: Data, ifSearch: Bool = false) -> [PhotoModel]? {
+    
+    func parseJSON(_ unsplashData: Data, ifSearch: Bool = false, getInfo: Bool = false) -> [PhotoModel]? {
         let decoder = JSONDecoder()
         do {
-            if ifSearch {
+            if ifSearch, !getInfo {
                 let decodedData = try decoder.decode(UnsplashSearchData.self, from: unsplashData)
                 var photoObjectsArray = [PhotoModel]()
-                print(decodedData)
                 for photoObject in decodedData.results {
+                    let id = photoObject.id
                     let authorName = photoObject.user.name
-                    let likesAmount = photoObject.likes
                     let dateCreated = photoObject.created_at
                     let regularPhoto = photoObject.urls.regular
                     let smallPhoto = photoObject.urls.small
-                    let downloads = photoObject.downloads
-                    //                    let location =
-                    let photoModel = PhotoModel(authorName: authorName, likesAmount: likesAmount, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: ("", ""), downloads: downloads)
+                    let photoModel = PhotoModel(id: id, authorName: authorName, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (nil,nil), downloads: nil)
                     photoObjectsArray.append(photoModel)
-                    print("Here is your data", photoModel)
                 }
                 return photoObjectsArray
-            } else {
+            } else if !ifSearch, !getInfo {
                 let decodedData = try decoder.decode([UnsplashData].self, from: unsplashData)
                 var photoObjectsArray = [PhotoModel]()
                 for photoObject in decodedData {
+                    let id = photoObject.id
                     let authorName = photoObject.user.name
-                    let likesAmount = photoObject.likes
                     let dateCreated = photoObject.created_at
                     let regularPhoto = photoObject.urls.regular
                     let smallPhoto = photoObject.urls.small
                     let locationCity = photoObject.location.city
                     let locationCountry = photoObject.location.country
                     let downloads = photoObject.downloads
-                    let photoModel = PhotoModel(authorName: authorName, likesAmount: likesAmount, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (locationCity, locationCountry), downloads: downloads)
+                    let photoModel = PhotoModel(id: id, authorName: authorName, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (locationCity, locationCountry), downloads: downloads)
                     photoObjectsArray.append(photoModel)
-                    //                locationCity: locationCity, locationCountry: locationCountry,
                 }
                 return photoObjectsArray
+            } else if !ifSearch, getInfo {
+                let decodedData = try decoder.decode(UnsplashData.self, from: unsplashData)
+                var photoObjectsArray = [PhotoModel]()
+                let id = decodedData.id
+                let authorName = decodedData.user.name
+                let dateCreated = decodedData.created_at
+                let regularPhoto = decodedData.urls.regular
+                let smallPhoto = decodedData.urls.small
+                let locationCity = decodedData.location.city
+                let locationCountry = decodedData.location.country
+                let downloads = decodedData.downloads
+                let photoModel = PhotoModel(id: id, authorName: authorName, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (locationCity, locationCountry), downloads: downloads)
+                photoObjectsArray.append(photoModel)
+                return photoObjectsArray
             }
-            
         } catch {
             print("Error while parsing JSON:", error)
-            return nil
         }
+        return nil
     }
-    
 }
 
 

@@ -8,11 +8,15 @@
 import Foundation
 
 struct PhotoModel {
+    let id: String
     let authorName: String
-    let likesAmount: Int
     let dateCreated: String
     let regularPhoto: String
     let smallPhoto: String
-    let location: (String?, String?)
-    let downloads: Int
+    var location: (String?, String?)
+    var downloads: Int?
 }
+
+//struct SearchPhotoModel {
+//    
+//}

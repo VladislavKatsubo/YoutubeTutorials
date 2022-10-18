@@ -10,7 +10,6 @@ import Foundation
 struct UnsplashData: Codable, Identifiable {
     var id: String
     var urls: URLs
-    var likes: Int
     var created_at: String
     var user: User
     var location: Location
@@ -44,7 +43,6 @@ struct Results: Codable {
     var urls: URLs
     var user: User
     var likes: Int
-    var downloads: Int
 }
 
 
