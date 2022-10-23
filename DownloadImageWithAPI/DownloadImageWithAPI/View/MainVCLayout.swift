@@ -36,9 +36,9 @@ class MainVCLayout: UIView {
     
     //MARK: - CollectionView configuration
     func configureCollectionView() {
+        addSubview(collectionView)
         collectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.backgroundColor = .black
-        addSubview(collectionView)
     }
     
 }

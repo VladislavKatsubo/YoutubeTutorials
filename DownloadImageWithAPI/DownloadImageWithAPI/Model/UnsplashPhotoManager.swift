@@ -21,29 +21,29 @@ struct UnsplashPhotoManager {
     
     let photoURL = "https://api.unsplash.com/photos"
     let photoSearchURL = "https://api.unsplash.com/search/photos"
-    let photoRandomMethod = "/random"
+    let random = "/random"
     let photoAPIKey = "/?client_id=\(apikey)"
     
     var delegate: UnsplashDataDelegate?
     
     func fetchPhotos() {
-        let urlString = "\(photoURL)\(photoRandomMethod)\(photoAPIKey)&count=10"
-        performRequest(with: urlString, ifSearch: false)
+        let urlString = "\(photoURL)\(random)\(photoAPIKey)&count=50"
+        performRequest(with: urlString, fromSearchBar: false)
     }
     
     func fetchPhotos(with query: inout String) {
         query = query.replacingOccurrences(of: " ", with: "%20")
         let urlString = "\(photoSearchURL)\(photoAPIKey)&query=\(query)"
-        performRequest(with: urlString, ifSearch: true)
+        performRequest(with: urlString, fromSearchBar: true)
     }
     
     func getInfoForID(with id: String) {
         let urlString = "\(photoURL)/\(id)\(photoAPIKey)"
-        performRequest(with: urlString, ifSearch: false, forID: true)
+        performRequest(with: urlString, fromSearchBar: false, forID: true)
         return
     }
     
-    func performRequest(with urlString: String, ifSearch: Bool, forID: Bool = false) {
+    func performRequest(with urlString: String, fromSearchBar: Bool, forID: Bool = false) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -52,7 +52,7 @@ struct UnsplashPhotoManager {
                     return
                 }
                 if let safeData = data {
-                    if let photoData = self.parseJSON(safeData, ifSearch: ifSearch, getInfo: forID) {
+                    if let photoData = self.parseJSON(safeData, ifSearch: fromSearchBar, getInfo: forID) {
                         self.delegate?.updateUI(with: photoData)
                     }
                 }
@@ -74,7 +74,12 @@ struct UnsplashPhotoManager {
                     let dateCreated = photoObject.created_at
                     let regularPhoto = photoObject.urls.regular
                     let smallPhoto = photoObject.urls.small
-                    let photoModel = PhotoModel(id: id, authorName: authorName, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (nil,nil), downloads: nil)
+                    let photoModel = PhotoModel()
+                    photoModel.id = id
+                    photoModel.authorName = authorName
+                    photoModel.dateCreated = dateCreated
+                    photoModel.regularPhoto = regularPhoto
+                    photoModel.smallPhoto = smallPhoto
                     photoObjectsArray.append(photoModel)
                 }
                 return photoObjectsArray
@@ -89,8 +94,18 @@ struct UnsplashPhotoManager {
                     let smallPhoto = photoObject.urls.small
                     let locationCity = photoObject.location.city
                     let locationCountry = photoObject.location.country
+                    let location = PhotoLocation()
+                    location.locationCity = locationCity
+                    location.locationCountry = locationCountry
                     let downloads = photoObject.downloads
-                    let photoModel = PhotoModel(id: id, authorName: authorName, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (locationCity, locationCountry), downloads: downloads)
+                    let photoModel = PhotoModel()
+                    photoModel.id = id
+                    photoModel.authorName = authorName
+                    photoModel.dateCreated = dateCreated
+                    photoModel.regularPhoto = regularPhoto
+                    photoModel.smallPhoto = smallPhoto
+                    photoModel.location = location
+                    photoModel.downloads = downloads
                     photoObjectsArray.append(photoModel)
                 }
                 return photoObjectsArray
@@ -104,8 +119,18 @@ struct UnsplashPhotoManager {
                 let smallPhoto = decodedData.urls.small
                 let locationCity = decodedData.location.city
                 let locationCountry = decodedData.location.country
+                let location = PhotoLocation()
+                location.locationCity = locationCity
+                location.locationCountry = locationCountry
                 let downloads = decodedData.downloads
-                let photoModel = PhotoModel(id: id, authorName: authorName, dateCreated: dateCreated, regularPhoto: regularPhoto, smallPhoto: smallPhoto, location: (locationCity, locationCountry), downloads: downloads)
+                let photoModel = PhotoModel()
+                photoModel.id = id
+                photoModel.authorName = authorName
+                photoModel.dateCreated = dateCreated
+                photoModel.regularPhoto = regularPhoto
+                photoModel.smallPhoto = smallPhoto
+                photoModel.location = location
+                photoModel.downloads = downloads
                 photoObjectsArray.append(photoModel)
                 return photoObjectsArray
             }

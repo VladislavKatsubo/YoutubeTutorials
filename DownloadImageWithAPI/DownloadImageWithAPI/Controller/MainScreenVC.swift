@@ -25,17 +25,18 @@ class MainScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentView.searchBar.delegate = self
-        showSearchBarButton(true)
-        
         configureNavBar()
-        
+        configureDelegates()
+        showSearchBarButton(true)
+        contentView.configureCollectionView()
+        unsplashPhotoManager.fetchPhotos()
+    }
+    
+    func configureDelegates() {
         contentView.collectionView.delegate = self
         contentView.collectionView.dataSource = self
-        contentView.configureCollectionView()
-        
+        contentView.searchBar.delegate = self
         unsplashPhotoManager.delegate = self
-        unsplashPhotoManager.fetchPhotos()
     }
     
     func configureNavBar() {

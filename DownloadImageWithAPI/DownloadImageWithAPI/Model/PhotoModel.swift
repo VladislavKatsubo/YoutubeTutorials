@@ -6,17 +6,19 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct PhotoModel {
-    let id: String
-    let authorName: String
-    let dateCreated: String
-    let regularPhoto: String
-    let smallPhoto: String
-    var location: (String?, String?)
-    var downloads: Int?
+class PhotoModel: Object {
+    @Persisted(primaryKey: true) var id: String = ""
+    @Persisted var authorName: String = ""
+    @Persisted var dateCreated: String = ""
+    @Persisted var regularPhoto: String = ""
+    @Persisted var smallPhoto: String = ""
+    @Persisted var location: PhotoLocation?
+    @Persisted var downloads: Int?
 }
 
-//struct SearchPhotoModel {
-//    
-//}
+class PhotoLocation: Object {
+    @Persisted var locationCity: String?
+    @Persisted var locationCountry: String?
+}

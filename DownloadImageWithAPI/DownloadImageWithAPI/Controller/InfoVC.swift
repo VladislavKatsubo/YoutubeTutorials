@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class InfoVC: UIViewController {
-
+    
+    lazy var layout: InfoVCLayout = .init()
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
-    lazy var layout: InfoVCLayout = .init()
+
     var photoObject: PhotoModel? = nil
     
     override func loadView() {
@@ -62,10 +64,10 @@ class InfoVC: UIViewController {
                 layout.downloadsAmount.attributedText = addSymbolPrefix(with: Symbols.downloadArrow.rawValue, for: String(downloads))
             }
             
-            switch photo.location {
-            case (let city?, let country?):
+
+            if let city = photo.location?.locationCity, let country = photo.location?.locationCountry {
                 layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "\(String(describing: city)), \(String(describing: country))")
-            default:
+            } else {
                 layout.location.attributedText = addSymbolPrefix(with: Symbols.location.rawValue, for: "Earth")
             }
             

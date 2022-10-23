@@ -13,7 +13,7 @@ class DetailedVCLayout: UIView {
     var photoView: CustomImageView = {
         let photoView = CustomImageView()
         photoView.clipsToBounds = true
-        photoView.contentMode = .scaleAspectFill
+        photoView.contentMode = .scaleAspectFit
         photoView.activityView.center = photoView.center
         photoView.activityView.frame = photoView.frame
         return photoView
@@ -36,81 +36,10 @@ class DetailedVCLayout: UIView {
         
         NSLayoutConstraint.activate([
             photoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            photoView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            photoView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            photoView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            photoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            photoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            photoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
-//    let authorName: UILabel = {
-//        let label = UILabel()
-//        label.textAlignment = .center
-//        label.numberOfLines = 0
-//        label.font = UIFont.systemFont(ofSize: 17)
-//        label.textColor = .white
-//        return label
-//    }()
-//
-//    let dateCreated: UILabel = {
-//        let label = UILabel()
-//        label.textAlignment = .center
-//        label.font = UIFont.systemFont(ofSize: 17)
-//        label.numberOfLines = 0
-//        label.textColor = .white
-//        return label
-//    }()
-//
-//    let downloadsAmount: UILabel = {
-//        let label = UILabel()
-//        label.textAlignment = .center
-//        label.font = UIFont.systemFont(ofSize: 17)
-//        label.numberOfLines = 0
-//        label.textColor = .white
-//        return label
-//    }()
-//
-//    let location: UILabel = {
-//        let label = UILabel()
-//        label.textAlignment = .center
-//        label.font = UIFont.systemFont(ofSize: 17)
-//        label.numberOfLines = 0
-//        label.sizeToFit()
-//        label.textColor = .white
-//        return label
-//    }()
-//        addSubview(authorName)
-//        authorName.translatesAutoresizingMaskIntoConstraints = false
-//        addSubview(downloadsAmount)
-//        downloadsAmount.translatesAutoresizingMaskIntoConstraints = false
-//        addSubview(location)
-//        location.translatesAutoresizingMaskIntoConstraints = false
-//        addSubview(dateCreated)
-//        dateCreated.translatesAutoresizingMaskIntoConstraints = false
         
-//        let nameDownloadsStack = UIStackView(arrangedSubviews: [authorName, downloadsAmount])
-//        nameDownloadsStack.translatesAutoresizingMaskIntoConstraints = false
-//        nameDownloadsStack.axis = .vertical
-//        nameDownloadsStack.distribution = .fillProportionally
-//        nameDownloadsStack.spacing = 10
-//        addSubview(nameDownloadsStack)
-//
-//        let dateLocationStack = UIStackView(arrangedSubviews: [dateCreated, location])
-//        dateLocationStack.translatesAutoresizingMaskIntoConstraints = false
-//        dateLocationStack.axis = .vertical
-//        dateLocationStack.distribution = .fillProportionally
-//        dateLocationStack.spacing = 10
-//        addSubview(dateLocationStack)
-        
-        
-//            nameDownloadsStack.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 10),
-//            nameDownloadsStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-//            nameDownloadsStack.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
-//
-//            dateLocationStack.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 10),
-//            dateLocationStack.leadingAnchor.constraint(equalTo: nameDownloadsStack.trailingAnchor),
-//            dateLocationStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            
-        
-
-    
 }
