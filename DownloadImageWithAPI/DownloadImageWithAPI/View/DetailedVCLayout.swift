@@ -14,8 +14,7 @@ class DetailedVCLayout: UIView {
         let photoView = CustomImageView()
         photoView.clipsToBounds = true
         photoView.contentMode = .scaleAspectFit
-        photoView.activityView.center = photoView.center
-        photoView.activityView.frame = photoView.frame
+        
         return photoView
     }()
     
@@ -32,13 +31,17 @@ class DetailedVCLayout: UIView {
         backgroundColor = .black
         addSubview(photoView)
         photoView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(photoView.activityView)
+        photoView.activityView.translatesAutoresizingMaskIntoConstraints = false
 
-        
         NSLayoutConstraint.activate([
             photoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             photoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             photoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            photoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            photoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            photoView.activityView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            photoView.activityView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
         ])
     }
         

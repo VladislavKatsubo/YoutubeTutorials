@@ -118,7 +118,7 @@ class DetailedVC: UIViewController {
     }
     
     
-    //MARK: - Make Photo "fullscreen"
+//MARK: - Make Photo "fullscreen" on tap
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         scaleAspect()
     }
