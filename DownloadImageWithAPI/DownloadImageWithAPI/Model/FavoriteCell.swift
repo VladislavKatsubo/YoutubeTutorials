@@ -17,6 +17,7 @@ class FavoriteCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(photoImageView)
+        addSubview(photoImageView.activityView)
         addSubview(nameLocationLabel)
         configureImageView()
         configureLabel()
@@ -47,11 +48,16 @@ class FavoriteCell: UITableViewCell {
     
     func setImageConstraints() {
         photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        photoImageView.activityView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: topAnchor),
             photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            photoImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            photoImageView.activityView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            photoImageView.activityView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     

@@ -196,7 +196,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "DownloadImageWithAPI" */;
+			buildConfigurationList = 0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "UnsplashClient" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -444,7 +444,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "DownloadImageWithAPI" */ = {
+		0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "UnsplashClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D0D754428E6181F00A223B7 /* Debug */,
