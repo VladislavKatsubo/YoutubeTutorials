@@ -36,7 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D0D753228E6181D00A223B7 /* DownloadImageWithAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DownloadImageWithAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D0D753228E6181D00A223B7 /* UnsplashClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D0D753528E6181D00A223B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D0D753728E6181D00A223B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0D0D753928E6181D00A223B7 /* MainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenVC.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		0D0D752928E6181D00A223B7 = {
 			isa = PBXGroup;
 			children = (
-				0D0D753428E6181D00A223B7 /* DownloadImageWithAPI */,
+				0D0D753428E6181D00A223B7 /* UnsplashClient */,
 				0D0D753328E6181D00A223B7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,12 +88,12 @@
 		0D0D753328E6181D00A223B7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0D0D753228E6181D00A223B7 /* DownloadImageWithAPI.app */,
+				0D0D753228E6181D00A223B7 /* UnsplashClient.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0D0D753428E6181D00A223B7 /* DownloadImageWithAPI */ = {
+		0D0D753428E6181D00A223B7 /* UnsplashClient */ = {
 			isa = PBXGroup;
 			children = (
 				0D0D753528E6181D00A223B7 /* AppDelegate.swift */,
@@ -106,7 +106,7 @@
 				0D0D754028E6181F00A223B7 /* LaunchScreen.storyboard */,
 				0D0D754328E6181F00A223B7 /* Info.plist */,
 			);
-			path = DownloadImageWithAPI;
+			path = UnsplashClient;
 			sourceTree = "<group>";
 		};
 		0D0D754B28E618B900A223B7 /* Model */ = {
@@ -160,9 +160,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0D0D753128E6181D00A223B7 /* DownloadImageWithAPI */ = {
+		0D0D753128E6181D00A223B7 /* UnsplashClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0D0D754628E6181F00A223B7 /* Build configuration list for PBXNativeTarget "DownloadImageWithAPI" */;
+			buildConfigurationList = 0D0D754628E6181F00A223B7 /* Build configuration list for PBXNativeTarget "UnsplashClient" */;
 			buildPhases = (
 				0D0D752E28E6181D00A223B7 /* Sources */,
 				0D0D752F28E6181D00A223B7 /* Frameworks */,
@@ -172,13 +172,13 @@
 			);
 			dependencies = (
 			);
-			name = DownloadImageWithAPI;
+			name = UnsplashClient;
 			packageProductDependencies = (
 				0D6557C628FFBB7A003D788A /* Realm */,
 				0D6557C828FFBB7A003D788A /* RealmSwift */,
 			);
 			productName = DownloadImageWithAPI;
-			productReference = 0D0D753228E6181D00A223B7 /* DownloadImageWithAPI.app */;
+			productReference = 0D0D753228E6181D00A223B7 /* UnsplashClient.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -196,7 +196,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "UnsplashCli" */;
+			buildConfigurationList = 0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "UnsplashClient" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -212,7 +212,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0D0D753128E6181D00A223B7 /* DownloadImageWithAPI */,
+				0D0D753128E6181D00A223B7 /* UnsplashClient */,
 			);
 		};
 /* End PBXProject section */
@@ -396,7 +396,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FAD3VV45WY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DownloadImageWithAPI/Info.plist;
+				INFOPLIST_FILE = UnsplashClient/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -423,7 +423,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FAD3VV45WY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DownloadImageWithAPI/Info.plist;
+				INFOPLIST_FILE = UnsplashClient/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -444,7 +444,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "UnsplashCli" */ = {
+		0D0D752D28E6181D00A223B7 /* Build configuration list for PBXProject "UnsplashClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D0D754428E6181F00A223B7 /* Debug */,
@@ -453,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0D0D754628E6181F00A223B7 /* Build configuration list for PBXNativeTarget "DownloadImageWithAPI" */ = {
+		0D0D754628E6181F00A223B7 /* Build configuration list for PBXNativeTarget "UnsplashClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D0D754728E6181F00A223B7 /* Debug */,
